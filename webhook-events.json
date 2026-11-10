@@ -1,0 +1,1527 @@
+{
+  "note": "Each `example` is the whole body of a delivery, with made-up values. `data` holds the fields listed for the event.",
+  "events": [
+    {
+      "event": "message.received",
+      "group": "message",
+      "description": "A contact wrote to one of your numbers. Nothing a contact sends is dropped: a message WhatsApp cannot pass on arrives as `type` `unsupported`, a change of number as `system`, a reaction as `type` `reaction` (with `reaction_to`, the message it is on, and `emoji`, empty when removed), and a message from a blocked contact with `blocked: true`.",
+      "fields": [
+        {
+          "name": "message_id",
+          "type": "string",
+          "description": "The message.",
+          "example": "b1a4e7c0-0000-4000-8000-000000000001"
+        },
+        {
+          "name": "conversation_id",
+          "type": "string",
+          "description": "Its conversation.",
+          "example": "7c1e4a90-0000-4000-8000-000000000002"
+        },
+        {
+          "name": "contact_id",
+          "type": "string",
+          "description": "The contact.",
+          "example": "c0ffee00-0000-4000-8000-000000000003",
+          "nullable": true
+        },
+        {
+          "name": "channel_id",
+          "type": "string",
+          "description": "The channel (the number).",
+          "example": "5e1f0000-0000-4000-8000-000000000004"
+        },
+        {
+          "name": "channel_type",
+          "type": "string",
+          "description": "The kind of channel, for example `whatsapp`.",
+          "example": "whatsapp"
+        },
+        {
+          "name": "provider_message_id",
+          "type": "string",
+          "description": "The provider's id for the message.",
+          "example": "wamid.HBgM…",
+          "nullable": true
+        },
+        {
+          "name": "from",
+          "type": "string",
+          "description": "The sender's phone number.",
+          "example": "33612345678",
+          "nullable": true
+        },
+        {
+          "name": "profile_name",
+          "type": "string",
+          "description": "The name the sender gave their profile.",
+          "example": "Karim",
+          "nullable": true
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "description": "The kind of message: `text`, `image`, `audio`, `document`, `location`, `interactive`, `system` (the contact changed number), `reaction` (an emoji on an earlier message: `reaction_to` and `emoji` say which and what), `unsupported` (a kind WhatsApp does not pass on)…",
+          "example": "text"
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "description": "The text, when there is one.",
+          "example": "Bonjour",
+          "nullable": true
+        },
+        {
+          "name": "reply",
+          "type": "object",
+          "description": "The button or list choice the contact made, when it is a reply.",
+          "example": null,
+          "nullable": true
+        },
+        {
+          "name": "location",
+          "type": "object",
+          "description": "The location the contact shared, when it is one.",
+          "example": null,
+          "nullable": true
+        },
+        {
+          "name": "referral",
+          "type": "object",
+          "description": "Where the contact came from (a click-to-WhatsApp ad or post), as Meta gave it, when it is one.",
+          "example": null,
+          "nullable": true
+        },
+        {
+          "name": "media",
+          "type": "object",
+          "description": "The file: `url` (Nodium's copy, behind your key), `mime_type`, `filename`.",
+          "example": null,
+          "nullable": true
+        },
+        {
+          "name": "window_expires_at",
+          "type": "string",
+          "description": "When the 24-hour customer service window of this conversation closes (ISO 8601), counted from the contact's latest message; free-form replies are accepted until then. `null` when the window never opened (a `system` message does not open it).",
+          "example": "2026-09-30T10:00:00.000Z",
+          "nullable": true
+        },
+        {
+          "name": "blocked",
+          "type": "boolean",
+          "description": "Present and true when the sender is a blocked contact: the message is stored and announced, but nothing should answer it.",
+          "example": true
+        },
+        {
+          "name": "previous_number",
+          "type": "string",
+          "description": "On a `system` message where the contact changed number: their old number.",
+          "example": null,
+          "nullable": true
+        },
+        {
+          "name": "new_number",
+          "type": "string",
+          "description": "On a `system` message where the contact changed number: their new number.",
+          "example": null,
+          "nullable": true
+        },
+        {
+          "name": "reaction_to",
+          "type": "string",
+          "description": "On a `reaction` only, absent otherwise: the provider's id (`provider_message_id`) of the message the reaction is on. `null` when the provider did not name it.",
+          "example": "wamid.HBgM…",
+          "nullable": true
+        },
+        {
+          "name": "emoji",
+          "type": "string",
+          "description": "On a `reaction` only, absent otherwise: the emoji, or an empty string when the reaction was removed.",
+          "example": "👍"
+        }
+      ],
+      "example": {
+        "id": "evt_0123456789abcdef0123456789abcdef",
+        "event": "message.received",
+        "workspace_id": "d0c00000-0000-4000-8000-000000000006",
+        "external_id": "crm-4187",
+        "occurred_at": "2026-09-29T10:00:00.000Z",
+        "data": {
+          "message_id": "b1a4e7c0-0000-4000-8000-000000000001",
+          "conversation_id": "7c1e4a90-0000-4000-8000-000000000002",
+          "contact_id": "c0ffee00-0000-4000-8000-000000000003",
+          "channel_id": "5e1f0000-0000-4000-8000-000000000004",
+          "channel_type": "whatsapp",
+          "provider_message_id": "wamid.HBgM…",
+          "from": "33612345678",
+          "profile_name": "Karim",
+          "type": "text",
+          "text": "Bonjour",
+          "reply": null,
+          "location": null,
+          "referral": null,
+          "media": null,
+          "window_expires_at": "2026-09-30T10:00:00.000Z",
+          "blocked": true,
+          "previous_number": null,
+          "new_number": null,
+          "reaction_to": "wamid.HBgM…",
+          "emoji": "👍"
+        }
+      }
+    },
+    {
+      "event": "message.imported",
+      "group": "message",
+      "description": "A past message of a coexistence number, imported from the phone when the number was connected. Not delivered to webhooks: it is written to the event log only (`GET /events`), one entry per message, with `occurred_at` set to when the message was actually written. `history.progress` tells how far the import is.",
+      "fields": [
+        {
+          "name": "message_id",
+          "type": "string",
+          "description": "The message.",
+          "example": "b1a4e7c0-0000-4000-8000-000000000001"
+        },
+        {
+          "name": "conversation_id",
+          "type": "string",
+          "description": "Its conversation.",
+          "example": "7c1e4a90-0000-4000-8000-000000000002"
+        },
+        {
+          "name": "contact_id",
+          "type": "string",
+          "description": "The contact.",
+          "example": "c0ffee00-0000-4000-8000-000000000003",
+          "nullable": true
+        },
+        {
+          "name": "channel_id",
+          "type": "string",
+          "description": "The channel (the number).",
+          "example": "5e1f0000-0000-4000-8000-000000000004"
+        },
+        {
+          "name": "channel_type",
+          "type": "string",
+          "description": "The kind of channel, for example `whatsapp`.",
+          "example": "whatsapp"
+        },
+        {
+          "name": "provider_message_id",
+          "type": "string",
+          "description": "The provider's id for the message.",
+          "example": "wamid.HBgM…",
+          "nullable": true
+        },
+        {
+          "name": "direction",
+          "type": "string",
+          "description": "`inbound` (the contact wrote) or `outbound` (written from the phone).",
+          "example": "inbound"
+        },
+        {
+          "name": "sender",
+          "type": "string",
+          "description": "`contact`, or `phone` when it was written from the phone.",
+          "example": "contact"
+        },
+        {
+          "name": "from",
+          "type": "string",
+          "description": "The contact's phone number, on an `inbound` message; `null` otherwise.",
+          "example": "+33612345678",
+          "nullable": true
+        },
+        {
+          "name": "to",
+          "type": "string",
+          "description": "The contact's phone number, on an `outbound` message; `null` otherwise.",
+          "example": null,
+          "nullable": true
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "description": "The kind of message: `text`, `image`, `audio`, `document`, `system`, `unsupported`…",
+          "example": "text"
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "description": "The text or caption, when there is one.",
+          "example": "Mes lunettes sont prêtes ?",
+          "nullable": true
+        },
+        {
+          "name": "media",
+          "type": "object",
+          "description": "The file: `url` (Nodium's copy, behind your key), `mime_type`, `filename`.",
+          "example": null,
+          "nullable": true
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "description": "Where the message stood when it was imported: `delivered` for what the contact wrote; `sent`, `delivered`, `read` or `failed` for what the phone sent.",
+          "example": "delivered"
+        }
+      ],
+      "example": {
+        "id": "evt_0123456789abcdef0123456789abcdef",
+        "event": "message.imported",
+        "workspace_id": "d0c00000-0000-4000-8000-000000000006",
+        "external_id": "crm-4187",
+        "occurred_at": "2026-09-29T10:00:00.000Z",
+        "data": {
+          "message_id": "b1a4e7c0-0000-4000-8000-000000000001",
+          "conversation_id": "7c1e4a90-0000-4000-8000-000000000002",
+          "contact_id": "c0ffee00-0000-4000-8000-000000000003",
+          "channel_id": "5e1f0000-0000-4000-8000-000000000004",
+          "channel_type": "whatsapp",
+          "provider_message_id": "wamid.HBgM…",
+          "direction": "inbound",
+          "sender": "contact",
+          "from": "+33612345678",
+          "to": null,
+          "type": "text",
+          "text": "Mes lunettes sont prêtes ?",
+          "media": null,
+          "status": "delivered"
+        }
+      }
+    },
+    {
+      "event": "message.echoed",
+      "group": "message",
+      "description": "The person holding the phone of a coexistence number wrote to a contact from the WhatsApp Business app (not through the API). A reaction put on a message from the phone comes the same way, as `type` `reaction` with `reaction_to` and `emoji`.",
+      "fields": [
+        {
+          "name": "message_id",
+          "type": "string",
+          "description": "The message.",
+          "example": "b1a4e7c0-0000-4000-8000-000000000001"
+        },
+        {
+          "name": "conversation_id",
+          "type": "string",
+          "description": "Its conversation.",
+          "example": "7c1e4a90-0000-4000-8000-000000000002"
+        },
+        {
+          "name": "contact_id",
+          "type": "string",
+          "description": "The contact.",
+          "example": "c0ffee00-0000-4000-8000-000000000003",
+          "nullable": true
+        },
+        {
+          "name": "channel_id",
+          "type": "string",
+          "description": "The channel (the number).",
+          "example": "5e1f0000-0000-4000-8000-000000000004"
+        },
+        {
+          "name": "channel_type",
+          "type": "string",
+          "description": "The kind of channel, for example `whatsapp`.",
+          "example": "whatsapp"
+        },
+        {
+          "name": "provider_message_id",
+          "type": "string",
+          "description": "The provider's id for the message.",
+          "example": "wamid.HBgM…",
+          "nullable": true
+        },
+        {
+          "name": "to",
+          "type": "string",
+          "description": "The recipient's phone number.",
+          "example": "+33612345678"
+        },
+        {
+          "name": "sender",
+          "type": "string",
+          "description": "Always `phone`.",
+          "example": "phone"
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "description": "The kind of message: `text`, `image`, `audio`, `document`, `reaction`…",
+          "example": "text"
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "description": "The text or caption, when there is one (the emoji, on a reaction).",
+          "example": "Bien reçu, à demain.",
+          "nullable": true
+        },
+        {
+          "name": "media",
+          "type": "object",
+          "description": "The file: `url` (Nodium's copy, behind your key), `mime_type`, `filename`.",
+          "example": null,
+          "nullable": true
+        },
+        {
+          "name": "reaction_to",
+          "type": "string",
+          "description": "On a `reaction` only, absent otherwise: the provider's id (`provider_message_id`) of the message the reaction is on. `null` when the provider did not name it.",
+          "example": "wamid.HBgM…",
+          "nullable": true
+        },
+        {
+          "name": "emoji",
+          "type": "string",
+          "description": "On a `reaction` only, absent otherwise: the emoji, or an empty string when the reaction was removed.",
+          "example": "👍"
+        },
+        {
+          "name": "sent_at",
+          "type": "string",
+          "description": "When the phone sent it (ISO 8601).",
+          "example": "2026-09-29T09:59:58.000Z",
+          "nullable": true
+        }
+      ],
+      "example": {
+        "id": "evt_0123456789abcdef0123456789abcdef",
+        "event": "message.echoed",
+        "workspace_id": "d0c00000-0000-4000-8000-000000000006",
+        "external_id": "crm-4187",
+        "occurred_at": "2026-09-29T10:00:00.000Z",
+        "data": {
+          "message_id": "b1a4e7c0-0000-4000-8000-000000000001",
+          "conversation_id": "7c1e4a90-0000-4000-8000-000000000002",
+          "contact_id": "c0ffee00-0000-4000-8000-000000000003",
+          "channel_id": "5e1f0000-0000-4000-8000-000000000004",
+          "channel_type": "whatsapp",
+          "provider_message_id": "wamid.HBgM…",
+          "to": "+33612345678",
+          "sender": "phone",
+          "type": "text",
+          "text": "Bien reçu, à demain.",
+          "media": null,
+          "reaction_to": "wamid.HBgM…",
+          "emoji": "👍",
+          "sent_at": "2026-09-29T09:59:58.000Z"
+        }
+      }
+    },
+    {
+      "event": "message.edited",
+      "group": "message",
+      "description": "A message was edited from the WhatsApp Business app. `message_id` and `provider_message_id` are those of the original message.",
+      "fields": [
+        {
+          "name": "message_id",
+          "type": "string",
+          "description": "The message.",
+          "example": "b1a4e7c0-0000-4000-8000-000000000001"
+        },
+        {
+          "name": "conversation_id",
+          "type": "string",
+          "description": "Its conversation.",
+          "example": "7c1e4a90-0000-4000-8000-000000000002"
+        },
+        {
+          "name": "contact_id",
+          "type": "string",
+          "description": "The contact.",
+          "example": "c0ffee00-0000-4000-8000-000000000003",
+          "nullable": true
+        },
+        {
+          "name": "channel_id",
+          "type": "string",
+          "description": "The channel (the number).",
+          "example": "5e1f0000-0000-4000-8000-000000000004"
+        },
+        {
+          "name": "channel_type",
+          "type": "string",
+          "description": "The kind of channel, for example `whatsapp`.",
+          "example": "whatsapp"
+        },
+        {
+          "name": "provider_message_id",
+          "type": "string",
+          "description": "The provider's id of the original message.",
+          "example": "wamid.HBgM…",
+          "nullable": true
+        },
+        {
+          "name": "sender",
+          "type": "string",
+          "description": "Always `phone`.",
+          "example": "phone"
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "description": "The text after the edit.",
+          "example": "Bien reçu, à demain 9 h.",
+          "nullable": true
+        }
+      ],
+      "example": {
+        "id": "evt_0123456789abcdef0123456789abcdef",
+        "event": "message.edited",
+        "workspace_id": "d0c00000-0000-4000-8000-000000000006",
+        "external_id": "crm-4187",
+        "occurred_at": "2026-09-29T10:00:00.000Z",
+        "data": {
+          "message_id": "b1a4e7c0-0000-4000-8000-000000000001",
+          "conversation_id": "7c1e4a90-0000-4000-8000-000000000002",
+          "contact_id": "c0ffee00-0000-4000-8000-000000000003",
+          "channel_id": "5e1f0000-0000-4000-8000-000000000004",
+          "channel_type": "whatsapp",
+          "provider_message_id": "wamid.HBgM…",
+          "sender": "phone",
+          "text": "Bien reçu, à demain 9 h."
+        }
+      }
+    },
+    {
+      "event": "message.revoked",
+      "group": "message",
+      "description": "A message was deleted for everyone from the WhatsApp Business app. `message_id` and `provider_message_id` are those of the original message.",
+      "fields": [
+        {
+          "name": "message_id",
+          "type": "string",
+          "description": "The message.",
+          "example": "b1a4e7c0-0000-4000-8000-000000000001"
+        },
+        {
+          "name": "conversation_id",
+          "type": "string",
+          "description": "Its conversation.",
+          "example": "7c1e4a90-0000-4000-8000-000000000002"
+        },
+        {
+          "name": "contact_id",
+          "type": "string",
+          "description": "The contact.",
+          "example": "c0ffee00-0000-4000-8000-000000000003",
+          "nullable": true
+        },
+        {
+          "name": "channel_id",
+          "type": "string",
+          "description": "The channel (the number).",
+          "example": "5e1f0000-0000-4000-8000-000000000004"
+        },
+        {
+          "name": "channel_type",
+          "type": "string",
+          "description": "The kind of channel, for example `whatsapp`.",
+          "example": "whatsapp"
+        },
+        {
+          "name": "provider_message_id",
+          "type": "string",
+          "description": "The provider's id of the original message.",
+          "example": "wamid.HBgM…",
+          "nullable": true
+        },
+        {
+          "name": "sender",
+          "type": "string",
+          "description": "Always `phone`.",
+          "example": "phone"
+        }
+      ],
+      "example": {
+        "id": "evt_0123456789abcdef0123456789abcdef",
+        "event": "message.revoked",
+        "workspace_id": "d0c00000-0000-4000-8000-000000000006",
+        "external_id": "crm-4187",
+        "occurred_at": "2026-09-29T10:00:00.000Z",
+        "data": {
+          "message_id": "b1a4e7c0-0000-4000-8000-000000000001",
+          "conversation_id": "7c1e4a90-0000-4000-8000-000000000002",
+          "contact_id": "c0ffee00-0000-4000-8000-000000000003",
+          "channel_id": "5e1f0000-0000-4000-8000-000000000004",
+          "channel_type": "whatsapp",
+          "provider_message_id": "wamid.HBgM…",
+          "sender": "phone"
+        }
+      }
+    },
+    {
+      "event": "message.sent",
+      "group": "message",
+      "description": "A message left for the provider, whoever sent it: your code, the console, a broadcast. It carries the whole content, the `idempotency_key` it was sent with, so you can tell your own sends from the others, and `to`, who it went to: a send you did not make can be to a contact you have never heard from.",
+      "fields": [
+        {
+          "name": "message_id",
+          "type": "string",
+          "description": "The message.",
+          "example": "b1a4e7c0-0000-4000-8000-000000000001"
+        },
+        {
+          "name": "conversation_id",
+          "type": "string",
+          "description": "Its conversation.",
+          "example": "7c1e4a90-0000-4000-8000-000000000002"
+        },
+        {
+          "name": "contact_id",
+          "type": "string",
+          "description": "The contact.",
+          "example": "c0ffee00-0000-4000-8000-000000000003",
+          "nullable": true
+        },
+        {
+          "name": "channel_id",
+          "type": "string",
+          "description": "The channel (the number).",
+          "example": "5e1f0000-0000-4000-8000-000000000004"
+        },
+        {
+          "name": "provider_message_id",
+          "type": "string",
+          "description": "The provider's id for the message.",
+          "example": "wamid.HBgM…",
+          "nullable": true
+        },
+        {
+          "name": "channel_type",
+          "type": "string",
+          "description": "The kind of channel, for example `whatsapp`.",
+          "example": "whatsapp"
+        },
+        {
+          "name": "sender",
+          "type": "string",
+          "description": "Who sent it: `api`, `user` or `system`.",
+          "example": "api"
+        },
+        {
+          "name": "api_key_id",
+          "type": "string",
+          "description": "The API key it went through, when it was one.",
+          "example": null,
+          "nullable": true
+        },
+        {
+          "name": "to",
+          "type": "string",
+          "description": "Who the message went to: the contact's phone number in E.164 (`+33612345678`), or their WhatsApp id (`wa:<id>`) when they have no number. `null` only when the message has no contact with either.",
+          "example": "+33612345678",
+          "nullable": true
+        },
+        {
+          "name": "idempotency_key",
+          "type": "string",
+          "description": "The idempotency key the message was sent with (yours, when your code sent it).",
+          "example": "coplace:b1a4e7c0",
+          "nullable": true
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "description": "The kind of message: `text`, `template`, `interactive`, `image`, `video`, `audio`, `document`, `location`, `contacts`.",
+          "example": "text"
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "description": "The text shown: the text itself, a template's rendered text, a file's caption, a form's body.",
+          "example": "Votre dossier est confirmé.",
+          "nullable": true
+        },
+        {
+          "name": "media",
+          "type": "object",
+          "description": "The file: `kind`, `url` (Nodium's copy, behind your key), `mime_type`, `filename`, `caption`; `voice: true` for a voice note.",
+          "example": null,
+          "nullable": true
+        },
+        {
+          "name": "template",
+          "type": "object",
+          "description": "The template: `name`, `language`, `parameters` (the values of its placeholders) and `buttons`. The rendered text is in `text`.",
+          "example": null,
+          "nullable": true
+        },
+        {
+          "name": "form",
+          "type": "object",
+          "description": "The interactive form (buttons, list, location request, Flow), as it was sent.",
+          "example": null,
+          "nullable": true
+        },
+        {
+          "name": "location",
+          "type": "object",
+          "description": "The location sent: `latitude`, `longitude`, `name`, `address`.",
+          "example": null,
+          "nullable": true
+        },
+        {
+          "name": "contacts",
+          "type": "object",
+          "description": "The contact cards sent, as a list.",
+          "example": null,
+          "nullable": true
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "description": "`sent`.",
+          "example": "sent"
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "The reason when it failed, otherwise null.",
+          "example": null,
+          "nullable": true
+        }
+      ],
+      "example": {
+        "id": "evt_0123456789abcdef0123456789abcdef",
+        "event": "message.sent",
+        "workspace_id": "d0c00000-0000-4000-8000-000000000006",
+        "external_id": "crm-4187",
+        "occurred_at": "2026-09-29T10:00:00.000Z",
+        "data": {
+          "message_id": "b1a4e7c0-0000-4000-8000-000000000001",
+          "conversation_id": "7c1e4a90-0000-4000-8000-000000000002",
+          "contact_id": "c0ffee00-0000-4000-8000-000000000003",
+          "channel_id": "5e1f0000-0000-4000-8000-000000000004",
+          "provider_message_id": "wamid.HBgM…",
+          "channel_type": "whatsapp",
+          "sender": "api",
+          "api_key_id": null,
+          "to": "+33612345678",
+          "idempotency_key": "coplace:b1a4e7c0",
+          "type": "text",
+          "text": "Votre dossier est confirmé.",
+          "media": null,
+          "template": null,
+          "form": null,
+          "location": null,
+          "contacts": null,
+          "status": "sent",
+          "error": null
+        }
+      }
+    },
+    {
+      "event": "message.delivered",
+      "group": "message",
+      "description": "The provider delivered a message to the contact's phone.",
+      "fields": [
+        {
+          "name": "message_id",
+          "type": "string",
+          "description": "The message.",
+          "example": "b1a4e7c0-0000-4000-8000-000000000001"
+        },
+        {
+          "name": "conversation_id",
+          "type": "string",
+          "description": "Its conversation.",
+          "example": "7c1e4a90-0000-4000-8000-000000000002"
+        },
+        {
+          "name": "contact_id",
+          "type": "string",
+          "description": "The contact.",
+          "example": "c0ffee00-0000-4000-8000-000000000003",
+          "nullable": true
+        },
+        {
+          "name": "channel_id",
+          "type": "string",
+          "description": "The channel (the number).",
+          "example": "5e1f0000-0000-4000-8000-000000000004"
+        },
+        {
+          "name": "provider_message_id",
+          "type": "string",
+          "description": "The provider's id for the message.",
+          "example": "wamid.HBgM…",
+          "nullable": true
+        },
+        {
+          "name": "channel_type",
+          "type": "string",
+          "description": "The kind of channel, for example `whatsapp`.",
+          "example": "whatsapp"
+        },
+        {
+          "name": "api_key_id",
+          "type": "string",
+          "description": "The API key it went through, when it was one.",
+          "example": null,
+          "nullable": true
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "description": "`delivered`.",
+          "example": "delivered"
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Always null.",
+          "example": null,
+          "nullable": true
+        }
+      ],
+      "example": {
+        "id": "evt_0123456789abcdef0123456789abcdef",
+        "event": "message.delivered",
+        "workspace_id": "d0c00000-0000-4000-8000-000000000006",
+        "external_id": "crm-4187",
+        "occurred_at": "2026-09-29T10:00:00.000Z",
+        "data": {
+          "message_id": "b1a4e7c0-0000-4000-8000-000000000001",
+          "conversation_id": "7c1e4a90-0000-4000-8000-000000000002",
+          "contact_id": "c0ffee00-0000-4000-8000-000000000003",
+          "channel_id": "5e1f0000-0000-4000-8000-000000000004",
+          "provider_message_id": "wamid.HBgM…",
+          "channel_type": "whatsapp",
+          "api_key_id": null,
+          "status": "delivered",
+          "error": null
+        }
+      }
+    },
+    {
+      "event": "message.read",
+      "group": "message",
+      "description": "The contact read a message.",
+      "fields": [
+        {
+          "name": "message_id",
+          "type": "string",
+          "description": "The message.",
+          "example": "b1a4e7c0-0000-4000-8000-000000000001"
+        },
+        {
+          "name": "conversation_id",
+          "type": "string",
+          "description": "Its conversation.",
+          "example": "7c1e4a90-0000-4000-8000-000000000002"
+        },
+        {
+          "name": "contact_id",
+          "type": "string",
+          "description": "The contact.",
+          "example": "c0ffee00-0000-4000-8000-000000000003",
+          "nullable": true
+        },
+        {
+          "name": "channel_id",
+          "type": "string",
+          "description": "The channel (the number).",
+          "example": "5e1f0000-0000-4000-8000-000000000004"
+        },
+        {
+          "name": "provider_message_id",
+          "type": "string",
+          "description": "The provider's id for the message.",
+          "example": "wamid.HBgM…",
+          "nullable": true
+        },
+        {
+          "name": "channel_type",
+          "type": "string",
+          "description": "The kind of channel, for example `whatsapp`.",
+          "example": "whatsapp"
+        },
+        {
+          "name": "api_key_id",
+          "type": "string",
+          "description": "The API key it went through, when it was one.",
+          "example": null,
+          "nullable": true
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "description": "`read`.",
+          "example": "read"
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Always null.",
+          "example": null,
+          "nullable": true
+        }
+      ],
+      "example": {
+        "id": "evt_0123456789abcdef0123456789abcdef",
+        "event": "message.read",
+        "workspace_id": "d0c00000-0000-4000-8000-000000000006",
+        "external_id": "crm-4187",
+        "occurred_at": "2026-09-29T10:00:00.000Z",
+        "data": {
+          "message_id": "b1a4e7c0-0000-4000-8000-000000000001",
+          "conversation_id": "7c1e4a90-0000-4000-8000-000000000002",
+          "contact_id": "c0ffee00-0000-4000-8000-000000000003",
+          "channel_id": "5e1f0000-0000-4000-8000-000000000004",
+          "provider_message_id": "wamid.HBgM…",
+          "channel_type": "whatsapp",
+          "api_key_id": null,
+          "status": "read",
+          "error": null
+        }
+      }
+    },
+    {
+      "event": "message.failed",
+      "group": "message",
+      "description": "A message could not be sent, or the provider reported it undeliverable later. It carries the whole content, the `idempotency_key` and `to`, like `message.sent`.",
+      "fields": [
+        {
+          "name": "message_id",
+          "type": "string",
+          "description": "The message.",
+          "example": "b1a4e7c0-0000-4000-8000-000000000001"
+        },
+        {
+          "name": "conversation_id",
+          "type": "string",
+          "description": "Its conversation.",
+          "example": "7c1e4a90-0000-4000-8000-000000000002"
+        },
+        {
+          "name": "contact_id",
+          "type": "string",
+          "description": "The contact.",
+          "example": "c0ffee00-0000-4000-8000-000000000003",
+          "nullable": true
+        },
+        {
+          "name": "channel_id",
+          "type": "string",
+          "description": "The channel (the number).",
+          "example": "5e1f0000-0000-4000-8000-000000000004"
+        },
+        {
+          "name": "provider_message_id",
+          "type": "string",
+          "description": "The provider's id for the message.",
+          "example": "wamid.HBgM…",
+          "nullable": true
+        },
+        {
+          "name": "channel_type",
+          "type": "string",
+          "description": "The kind of channel, for example `whatsapp`.",
+          "example": "whatsapp"
+        },
+        {
+          "name": "sender",
+          "type": "string",
+          "description": "Who sent it: `api`, `user` or `system`.",
+          "example": "api"
+        },
+        {
+          "name": "api_key_id",
+          "type": "string",
+          "description": "The API key it went through, when it was one.",
+          "example": null,
+          "nullable": true
+        },
+        {
+          "name": "to",
+          "type": "string",
+          "description": "Who the message went to: the contact's phone number in E.164 (`+33612345678`), or their WhatsApp id (`wa:<id>`) when they have no number. `null` only when the message has no contact with either.",
+          "example": "+33612345678",
+          "nullable": true
+        },
+        {
+          "name": "idempotency_key",
+          "type": "string",
+          "description": "The idempotency key the message was sent with (yours, when your code sent it).",
+          "example": "coplace:b1a4e7c0",
+          "nullable": true
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "description": "The kind of message: `text`, `template`, `interactive`, `image`, `video`, `audio`, `document`, `location`, `contacts`.",
+          "example": "text"
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "description": "The text shown: the text itself, a template's rendered text, a file's caption, a form's body.",
+          "example": "Votre dossier est confirmé.",
+          "nullable": true
+        },
+        {
+          "name": "media",
+          "type": "object",
+          "description": "The file: `kind`, `url` (Nodium's copy, behind your key), `mime_type`, `filename`, `caption`; `voice: true` for a voice note.",
+          "example": null,
+          "nullable": true
+        },
+        {
+          "name": "template",
+          "type": "object",
+          "description": "The template: `name`, `language`, `parameters` (the values of its placeholders) and `buttons`. The rendered text is in `text`.",
+          "example": null,
+          "nullable": true
+        },
+        {
+          "name": "form",
+          "type": "object",
+          "description": "The interactive form (buttons, list, location request, Flow), as it was sent.",
+          "example": null,
+          "nullable": true
+        },
+        {
+          "name": "location",
+          "type": "object",
+          "description": "The location sent: `latitude`, `longitude`, `name`, `address`.",
+          "example": null,
+          "nullable": true
+        },
+        {
+          "name": "contacts",
+          "type": "object",
+          "description": "The contact cards sent, as a list.",
+          "example": null,
+          "nullable": true
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "description": "`failed`.",
+          "example": "failed"
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "description": "Why, in a sentence.",
+          "example": "Meta refused: payment method missing (code 131042)",
+          "nullable": true
+        },
+        {
+          "name": "error_code",
+          "type": "integer",
+          "description": "The provider's error code, when it gave one.",
+          "example": 131042
+        },
+        {
+          "name": "error_info",
+          "type": "object",
+          "description": "The refusal explained, when the provider gave a code: `{ code, title, action, actor }`. `title` says what happened and `action` what to do about it; `actor` says who acts: `you` (your code or console), `client` (the owner of the number: `action` is written to be passed on to them), `nodium`, or `wait` (the refusal is temporary). `null` when the failure carries no provider code.",
+          "example": {
+            "code": 131042,
+            "title": "Missing or declined payment method on your client's WhatsApp account: Meta blocks paid messages.",
+            "action": "Add a valid payment method to your WhatsApp Business account in WhatsApp Manager, under payment methods. Messages will then go out normally.",
+            "actor": "client"
+          },
+          "nullable": true
+        },
+        {
+          "name": "reason",
+          "type": "string",
+          "description": "Why, as a stable code. Refused by Nodium when it was about to leave, nothing sent to the provider: `channel_inactive` (the number is switched off, by its owner, by Meta or by the plan), `contact_blocked`, `window_closed` (free text outside the 24-hour window, for a queued, scheduled or retried message). `payment_missing` when the client has no payment method at Meta.",
+          "example": "payment_missing",
+          "nullable": true
+        }
+      ],
+      "example": {
+        "id": "evt_0123456789abcdef0123456789abcdef",
+        "event": "message.failed",
+        "workspace_id": "d0c00000-0000-4000-8000-000000000006",
+        "external_id": "crm-4187",
+        "occurred_at": "2026-09-29T10:00:00.000Z",
+        "data": {
+          "message_id": "b1a4e7c0-0000-4000-8000-000000000001",
+          "conversation_id": "7c1e4a90-0000-4000-8000-000000000002",
+          "contact_id": "c0ffee00-0000-4000-8000-000000000003",
+          "channel_id": "5e1f0000-0000-4000-8000-000000000004",
+          "provider_message_id": "wamid.HBgM…",
+          "channel_type": "whatsapp",
+          "sender": "api",
+          "api_key_id": null,
+          "to": "+33612345678",
+          "idempotency_key": "coplace:b1a4e7c0",
+          "type": "text",
+          "text": "Votre dossier est confirmé.",
+          "media": null,
+          "template": null,
+          "form": null,
+          "location": null,
+          "contacts": null,
+          "status": "failed",
+          "error": "Meta refused: payment method missing (code 131042)",
+          "error_code": 131042,
+          "error_info": {
+            "code": 131042,
+            "title": "Missing or declined payment method on your client's WhatsApp account: Meta blocks paid messages.",
+            "action": "Add a valid payment method to your WhatsApp Business account in WhatsApp Manager, under payment methods. Messages will then go out normally.",
+            "actor": "client"
+          },
+          "reason": "payment_missing"
+        }
+      }
+    },
+    {
+      "event": "conversation.opened",
+      "group": "conversation",
+      "description": "A first message opened a new conversation with a contact on a channel.",
+      "fields": [
+        {
+          "name": "conversation_id",
+          "type": "string",
+          "description": "Its conversation.",
+          "example": "7c1e4a90-0000-4000-8000-000000000002"
+        },
+        {
+          "name": "contact_id",
+          "type": "string",
+          "description": "The contact.",
+          "example": "c0ffee00-0000-4000-8000-000000000003",
+          "nullable": true
+        },
+        {
+          "name": "channel_id",
+          "type": "string",
+          "description": "The channel (the number).",
+          "example": "5e1f0000-0000-4000-8000-000000000004"
+        },
+        {
+          "name": "channel_type",
+          "type": "string",
+          "description": "The kind of channel, for example `whatsapp`.",
+          "example": "whatsapp"
+        }
+      ],
+      "example": {
+        "id": "evt_0123456789abcdef0123456789abcdef",
+        "event": "conversation.opened",
+        "workspace_id": "d0c00000-0000-4000-8000-000000000006",
+        "external_id": "crm-4187",
+        "occurred_at": "2026-09-29T10:00:00.000Z",
+        "data": {
+          "conversation_id": "7c1e4a90-0000-4000-8000-000000000002",
+          "contact_id": "c0ffee00-0000-4000-8000-000000000003",
+          "channel_id": "5e1f0000-0000-4000-8000-000000000004",
+          "channel_type": "whatsapp"
+        }
+      }
+    },
+    {
+      "event": "contact.opted_in",
+      "group": "contact",
+      "description": "A contact's broadcast consent was recorded.",
+      "fields": [
+        {
+          "name": "contact_id",
+          "type": "string",
+          "description": "The contact.",
+          "example": "c0ffee00-0000-4000-8000-000000000003",
+          "nullable": true
+        },
+        {
+          "name": "source",
+          "type": "string",
+          "description": "Where the consent came from: `api`, `console`, `whatsapp`…",
+          "example": "api"
+        }
+      ],
+      "example": {
+        "id": "evt_0123456789abcdef0123456789abcdef",
+        "event": "contact.opted_in",
+        "workspace_id": "d0c00000-0000-4000-8000-000000000006",
+        "external_id": "crm-4187",
+        "occurred_at": "2026-09-29T10:00:00.000Z",
+        "data": {
+          "contact_id": "c0ffee00-0000-4000-8000-000000000003",
+          "source": "api"
+        }
+      }
+    },
+    {
+      "event": "contact.opted_out",
+      "group": "contact",
+      "description": "A contact withdrew their broadcast consent (for example by replying STOP).",
+      "fields": [
+        {
+          "name": "contact_id",
+          "type": "string",
+          "description": "The contact.",
+          "example": "c0ffee00-0000-4000-8000-000000000003",
+          "nullable": true
+        },
+        {
+          "name": "source",
+          "type": "string",
+          "description": "Where the withdrawal came from.",
+          "example": "whatsapp"
+        }
+      ],
+      "example": {
+        "id": "evt_0123456789abcdef0123456789abcdef",
+        "event": "contact.opted_out",
+        "workspace_id": "d0c00000-0000-4000-8000-000000000006",
+        "external_id": "crm-4187",
+        "occurred_at": "2026-09-29T10:00:00.000Z",
+        "data": {
+          "contact_id": "c0ffee00-0000-4000-8000-000000000003",
+          "source": "whatsapp"
+        }
+      }
+    },
+    {
+      "event": "template.status_changed",
+      "group": "template",
+      "description": "Meta changed the status or the category of a template at one of your clients.",
+      "fields": [
+        {
+          "name": "template_id",
+          "type": "string",
+          "description": "The template.",
+          "example": "a11ce000-0000-4000-8000-000000000005"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "description": "Its name at Meta.",
+          "example": "order_created"
+        },
+        {
+          "name": "language",
+          "type": "string",
+          "description": "Its language code.",
+          "example": "fr"
+        },
+        {
+          "name": "client_id",
+          "type": "string",
+          "description": "The client it concerns.",
+          "example": "d0c00000-0000-4000-8000-000000000006"
+        },
+        {
+          "name": "waba_id",
+          "type": "string",
+          "description": "The WhatsApp Business account.",
+          "example": "1827756917799351",
+          "nullable": true
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "description": "The new status: `approved`, `submitted`, `rejected`, `paused`, `disabled`…",
+          "example": "approved"
+        },
+        {
+          "name": "previous_status",
+          "type": "string",
+          "description": "The status before.",
+          "example": "submitted",
+          "nullable": true
+        },
+        {
+          "name": "category",
+          "type": "string",
+          "description": "The category now.",
+          "example": "UTILITY",
+          "nullable": true
+        },
+        {
+          "name": "previous_category",
+          "type": "string",
+          "description": "The category before.",
+          "example": "UTILITY",
+          "nullable": true
+        },
+        {
+          "name": "category_changed",
+          "type": "boolean",
+          "description": "Present and true when Meta changed the category.",
+          "example": true
+        },
+        {
+          "name": "reason",
+          "type": "string",
+          "description": "Meta's reason, when it refused or paused.",
+          "example": null,
+          "nullable": true
+        }
+      ],
+      "example": {
+        "id": "evt_0123456789abcdef0123456789abcdef",
+        "event": "template.status_changed",
+        "workspace_id": "d0c00000-0000-4000-8000-000000000006",
+        "external_id": "crm-4187",
+        "occurred_at": "2026-09-29T10:00:00.000Z",
+        "data": {
+          "template_id": "a11ce000-0000-4000-8000-000000000005",
+          "name": "order_created",
+          "language": "fr",
+          "client_id": "d0c00000-0000-4000-8000-000000000006",
+          "waba_id": "1827756917799351",
+          "status": "approved",
+          "previous_status": "submitted",
+          "category": "UTILITY",
+          "previous_category": "UTILITY",
+          "category_changed": true,
+          "reason": null
+        }
+      }
+    },
+    {
+      "event": "channel.connected",
+      "group": "channel",
+      "description": "A number was connected to a client: by the client through a hosted connect link, or by the Nodium team.",
+      "fields": [
+        {
+          "name": "channel_id",
+          "type": "string",
+          "description": "The channel (the number).",
+          "example": "5e1f0000-0000-4000-8000-000000000004"
+        },
+        {
+          "name": "phone_number_id",
+          "type": "string",
+          "description": "Meta's id of the number: the one the events you receive carry, to tie a channel to its number.",
+          "example": "1233522149840389"
+        },
+        {
+          "name": "display_number",
+          "type": "string",
+          "description": "The number as it is dialled.",
+          "example": "+33 7 43 61 20 85",
+          "nullable": true
+        },
+        {
+          "name": "coexistence",
+          "type": "boolean",
+          "description": "The number keeps the WhatsApp Business app on the phone.",
+          "example": false
+        },
+        {
+          "name": "connect_link_id",
+          "type": "string",
+          "description": "The connect link that was used, when there was one.",
+          "example": null,
+          "nullable": true
+        }
+      ],
+      "example": {
+        "id": "evt_0123456789abcdef0123456789abcdef",
+        "event": "channel.connected",
+        "workspace_id": "d0c00000-0000-4000-8000-000000000006",
+        "external_id": "crm-4187",
+        "occurred_at": "2026-09-29T10:00:00.000Z",
+        "data": {
+          "channel_id": "5e1f0000-0000-4000-8000-000000000004",
+          "phone_number_id": "1233522149840389",
+          "display_number": "+33 7 43 61 20 85",
+          "coexistence": false,
+          "connect_link_id": null
+        }
+      }
+    },
+    {
+      "event": "channel.connect_failed",
+      "group": "channel",
+      "description": "A number could not be connected: your client opened Meta's window (hosted connect link or console) and it was closed before the end, Meta showed an error, or a step failed on Nodium's side. `code` is stable; `reason` is a sentence for a person. Nothing was connected: the client can try again, or you can reach out.",
+      "fields": [
+        {
+          "name": "code",
+          "type": "string",
+          "description": "Why it failed. In the browser: `window_closed` (see `step`), `meta_error` (Meta showed an error), `popup_blocked`. On Nodium's side: `code_refused`, `waba_not_granted`, `no_number`, `number_mismatch`, `numbers_unreadable`, `other_workspace`, `other_provider`, `subscribe_failed`, `system_user_blind`, `pin_mismatch`, `register_failed`, `signup_unavailable` or `unknown`.",
+          "example": "register_failed"
+        },
+        {
+          "name": "reason",
+          "type": "string",
+          "description": "The failure, as a sentence.",
+          "example": "Meta refused to register the number."
+        },
+        {
+          "name": "step",
+          "type": "string",
+          "description": "For `window_closed` and `meta_error`: the screen of Meta's window where it stopped, as Meta names it.",
+          "example": "PHONE_NUMBER_SETUP",
+          "nullable": true
+        },
+        {
+          "name": "phone_number_id",
+          "type": "string",
+          "description": "Meta's id of the number, when Meta had already told us which one.",
+          "example": "1233522149840389",
+          "nullable": true
+        },
+        {
+          "name": "display_number",
+          "type": "string",
+          "description": "The number as it is dialled, when known.",
+          "example": "+33 7 43 61 20 85",
+          "nullable": true
+        },
+        {
+          "name": "connect_link_id",
+          "type": "string",
+          "description": "The connect link that was used, when there was one.",
+          "example": null,
+          "nullable": true
+        }
+      ],
+      "example": {
+        "id": "evt_0123456789abcdef0123456789abcdef",
+        "event": "channel.connect_failed",
+        "workspace_id": "d0c00000-0000-4000-8000-000000000006",
+        "external_id": "crm-4187",
+        "occurred_at": "2026-09-29T10:00:00.000Z",
+        "data": {
+          "code": "register_failed",
+          "reason": "Meta refused to register the number.",
+          "step": "PHONE_NUMBER_SETUP",
+          "phone_number_id": "1233522149840389",
+          "display_number": "+33 7 43 61 20 85",
+          "connect_link_id": null
+        }
+      }
+    },
+    {
+      "event": "channel.health_changed",
+      "group": "channel",
+      "description": "A number's quality rating or messaging tier changed, its payment method went missing or came back, or Meta changed the state of its WhatsApp account (application removed, account disabled or restored, review, display name).",
+      "fields": [
+        {
+          "name": "channel_id",
+          "type": "string",
+          "description": "The channel (the number).",
+          "example": "5e1f0000-0000-4000-8000-000000000004"
+        },
+        {
+          "name": "event",
+          "type": "string",
+          "description": "What happened: a Meta quality event, `payment_missing`, `payment_restored`, or a state of the account such as `PARTNER_REMOVED`, `DISABLED_UPDATE`, `account_review_approved`, `name_rejected`.",
+          "example": "FLAGGED"
+        },
+        {
+          "name": "is_active",
+          "type": "boolean",
+          "description": "On account events: whether the channel is still switched on after the change. Meta cutting the number switches it off.",
+          "example": false,
+          "nullable": true
+        },
+        {
+          "name": "reason",
+          "type": "string",
+          "description": "On account events: the reason Meta gives, when it gives one.",
+          "example": "ACCOUNT_VIOLATION",
+          "nullable": true
+        },
+        {
+          "name": "quality_rating",
+          "type": "string",
+          "description": "The quality rating now: `GREEN`, `YELLOW`, `RED`.",
+          "example": "YELLOW",
+          "nullable": true
+        },
+        {
+          "name": "previous_quality_rating",
+          "type": "string",
+          "description": "The rating before.",
+          "example": "GREEN",
+          "nullable": true
+        },
+        {
+          "name": "messaging_limit",
+          "type": "string",
+          "description": "The messaging tier now.",
+          "example": "TIER_1K",
+          "nullable": true
+        },
+        {
+          "name": "previous_messaging_limit",
+          "type": "string",
+          "description": "The tier before.",
+          "example": "TIER_1K",
+          "nullable": true
+        },
+        {
+          "name": "payment_missing",
+          "type": "boolean",
+          "description": "On payment events: whether the payment method is missing.",
+          "example": true,
+          "nullable": true
+        }
+      ],
+      "example": {
+        "id": "evt_0123456789abcdef0123456789abcdef",
+        "event": "channel.health_changed",
+        "workspace_id": "d0c00000-0000-4000-8000-000000000006",
+        "external_id": "crm-4187",
+        "occurred_at": "2026-09-29T10:00:00.000Z",
+        "data": {
+          "channel_id": "5e1f0000-0000-4000-8000-000000000004",
+          "event": "FLAGGED",
+          "is_active": false,
+          "reason": "ACCOUNT_VIOLATION",
+          "quality_rating": "YELLOW",
+          "previous_quality_rating": "GREEN",
+          "messaging_limit": "TIER_1K",
+          "previous_messaging_limit": "TIER_1K",
+          "payment_missing": true
+        }
+      }
+    },
+    {
+      "event": "history.progress",
+      "group": "channel",
+      "description": "A chunk of the history of a coexistence number was imported (the conversations the phone already had). One event per chunk: the messages themselves go to the event log as `message.imported`, without ringing.",
+      "fields": [
+        {
+          "name": "channel_id",
+          "type": "string",
+          "description": "The channel (the number).",
+          "example": "5e1f0000-0000-4000-8000-000000000004"
+        },
+        {
+          "name": "progress",
+          "type": "integer",
+          "description": "How far the import is, from 0 to 100.",
+          "example": 40
+        },
+        {
+          "name": "imported",
+          "type": "integer",
+          "description": "How many messages have been imported so far.",
+          "example": 312
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "description": "`running`, `done`, or `declined` when the owner of the phone refused to share the history.",
+          "example": "running"
+        }
+      ],
+      "example": {
+        "id": "evt_0123456789abcdef0123456789abcdef",
+        "event": "history.progress",
+        "workspace_id": "d0c00000-0000-4000-8000-000000000006",
+        "external_id": "crm-4187",
+        "occurred_at": "2026-09-29T10:00:00.000Z",
+        "data": {
+          "channel_id": "5e1f0000-0000-4000-8000-000000000004",
+          "progress": 40,
+          "imported": 312,
+          "status": "running"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,146 @@
+# Nodium API
+
+> Nodium connects your backend to WhatsApp (the official Cloud API). Nodium carries; your software decides.
+
+OpenAPI: https://nodium.io/docs/api/openapi.json
+Base URL: https://nodium.io/api/v1
+Auth: `Authorization: Bearer nod_…` — one key for the account; `Nodium-Tenant` names the client.
+Responses: `{ "data": … }` on success, `{ "error": { "code", "message", "detail", "param", "doc_url", "requestId" } }` on refusal.
+Guide: https://nodium.io/en/docs/api/guide
+Webhook events: message.received, message.imported, message.echoed, message.edited, message.revoked, message.sent, message.delivered, message.read, message.failed, conversation.opened, contact.opted_in, contact.opted_out, template.status_changed, channel.connected, channel.connect_failed, channel.health_changed, history.progress.
+Webhook event samples (fields and a full example of each): https://nodium.io/docs/api/webhook-events.json
+
+## API keys
+- `GET /api/v1/api-requests`: List recent API calls
+- `GET /api/v1/keys`: List the API keys of your account
+- `POST /api/v1/keys`: Create an API key
+- `DELETE /api/v1/keys/{id}`: Revoke an API key
+- `GET /api/v1/keys/current`: Get the key making the call
+
+## Billing
+- `GET /api/v1/billing/summary`: See what this month will cost
+
+## Broadcasts
+- `GET /api/v1/broadcasts`: List broadcasts
+- `POST /api/v1/broadcasts`: Send a broadcast
+- `GET /api/v1/broadcasts/{id}`: Get a broadcast
+- `POST /api/v1/broadcasts/{id}/cancel`: Cancel a broadcast
+- `DELETE /api/v1/broadcasts/{id}/recipients`: Clear the recipients of a broadcast
+- `GET /api/v1/broadcasts/{id}/recipients`: List the recipients of a broadcast
+- `POST /api/v1/broadcasts/{id}/recipients`: Add recipients to a broadcast
+- `POST /api/v1/broadcasts/{id}/resume`: Resume a broadcast
+- `POST /api/v1/broadcasts/{id}/send`: Send or schedule a broadcast
+- `POST /api/v1/broadcasts/preview`: Preview who a broadcast would reach
+
+## Channels
+- `GET /api/v1/channels`: List the channels
+- `POST /api/v1/channels`: Create a test channel
+- `DELETE /api/v1/channels/{id}`: Delete a channel
+- `GET /api/v1/channels/{id}`: Get a channel
+- `PATCH /api/v1/channels/{id}`: Switch a channel on or off, or rename it
+- `POST /api/v1/channels/{id}/check`: Check a WhatsApp number
+- `POST /api/v1/channels/{id}/diagnostic`: Diagnose a WhatsApp number
+- `GET /api/v1/channels/{id}/display-name`: Get the display name of a WhatsApp number
+- `POST /api/v1/channels/{id}/display-name`: Request a new display name
+- `GET /api/v1/channels/{id}/profile`: Get the profile of a WhatsApp number
+- `PATCH /api/v1/channels/{id}/profile`: Change the profile of a WhatsApp number
+- `DELETE /api/v1/channels/{id}/username`: Remove the username of a WhatsApp number
+- `GET /api/v1/channels/{id}/username`: Get the username of a WhatsApp number
+- `PUT /api/v1/channels/{id}/username`: Set the username of a WhatsApp number
+
+## Contacts
+- `GET /api/v1/contacts`: List contacts
+- `POST /api/v1/contacts`: Create a contact
+- `GET /api/v1/contacts/{id}`: Get one contact
+- `PATCH /api/v1/contacts/{id}`: Update a contact
+- `GET /api/v1/contacts/export`: Export contacts as CSV
+- `DELETE /api/v1/privacy/contacts/{id}`: Erase a person, for good
+
+## Conversations
+- `GET /api/v1/conversations`: List conversations
+- `GET /api/v1/conversations/{id}`: Get one conversation
+- `GET /api/v1/conversations/{id}/messages`: List the messages of a conversation
+- `POST /api/v1/conversations/{id}/read`: Send a read receipt
+- `POST /api/v1/conversations/{id}/typing`: Show "typing…" to the customer
+
+## Events
+- `GET /api/v1/events`: Read the event log
+
+## Flows
+- `GET /api/v1/flow-responses`: List Flow responses
+- `GET /api/v1/flows`: List WhatsApp Flows
+- `POST /api/v1/flows`: Create a WhatsApp Flow
+- `DELETE /api/v1/flows/{id}`: Delete a draft Flow
+- `GET /api/v1/flows/{id}`: Get a WhatsApp Flow
+- `PATCH /api/v1/flows/{id}`: Rename a WhatsApp Flow
+- `DELETE /api/v1/flows/{id}/data-endpoint`: Detach the data endpoint of a Flow
+- `GET /api/v1/flows/{id}/data-endpoint`: Get the data endpoint of a Flow
+- `PUT /api/v1/flows/{id}/data-endpoint`: Attach a data endpoint to a Flow
+- `POST /api/v1/flows/{id}/data-endpoint-test`: Try the data endpoint of a Flow
+- `POST /api/v1/flows/{id}/deprecate`: Deprecate a Flow
+- `POST /api/v1/flows/{id}/duplicate`: Duplicate a Flow
+- `GET /api/v1/flows/{id}/health`: Get the sending health of a Flow
+- `GET /api/v1/flows/{id}/invocations`: List the calls Meta made to a Flow
+- `GET /api/v1/flows/{id}/preview`: Get the preview of a Flow
+- `POST /api/v1/flows/{id}/publish`: Publish a Flow
+- `GET /api/v1/flows/{id}/versions`: List the versions of a Flow
+- `POST /api/v1/flows/{id}/versions`: Save a new version of a Flow
+- `GET /api/v1/flows/{id}/versions/{versionId}`: Get one version of a Flow
+- `GET /api/v1/flows/encryption`: Read the encryption state of the client's numbers
+- `POST /api/v1/flows/encryption`: Register the encryption key on a number
+- `POST /api/v1/flows/sync`: Sync Flows from Meta
+
+## Media
+- `GET /api/v1/media`: List received and sent files
+- `POST /api/v1/media`: Upload a file to send
+- `DELETE /api/v1/media/{id}`: Remove the file of a message
+
+## Messages
+- `GET /api/v1/messages`: List messages
+- `POST /api/v1/messages`: Send a message
+- `GET /api/v1/messages/{id}`: Get one message
+- `GET /api/v1/messages/{id}/media`: Download the file attached to a message
+
+## Sandbox
+- `GET /api/v1/sandbox`: Get the sandbox
+
+## Statistics
+- `GET /api/v1/stats/delivery`: Get delivery statistics
+
+## Status
+- `GET /api/v1/health`: Is everything working
+
+## Templates
+- `GET /api/v1/templates`: List message templates
+- `POST /api/v1/templates`: Draft a template
+- `DELETE /api/v1/templates/{id}`: Delete a template
+- `GET /api/v1/templates/{id}`: Get one template
+- `PATCH /api/v1/templates/{id}`: Edit a template
+- `POST /api/v1/templates/{id}/deploy`: Deploy a template to Meta
+- `POST /api/v1/templates/{id}/refresh`: Ask Meta where a template stands
+- `POST /api/v1/templates/import`: Import the templates already at Meta
+- `POST /api/v1/templates/samples`: Prepare a header sample upload
+- `POST /api/v1/templates/samples/{id}/confirm`: Confirm a header sample
+
+## Tenants
+- `GET /api/v1/connect-links`: List connect links
+- `DELETE /api/v1/connect-links/{id}`: Revoke a connect link
+- `PATCH /api/v1/connect-links/{id}`: Update a connect link
+- `GET /api/v1/tenants`: List your tenants
+- `POST /api/v1/tenants`: Create a tenant
+- `DELETE /api/v1/tenants/{id}`: Close a tenant
+- `GET /api/v1/tenants/{id}`: Get a tenant
+- `PATCH /api/v1/tenants/{id}`: Update a tenant
+- `GET /api/v1/tenants/{id}/channels`: List the channels of a tenant
+- `POST /api/v1/tenants/{id}/connect-links`: Create a hosted connect link
+
+## Webhooks
+- `GET /api/v1/webhooks`: List your webhook subscriptions
+- `POST /api/v1/webhooks`: Subscribe to events
+- `DELETE /api/v1/webhooks/{id}`: Unsubscribe
+- `GET /api/v1/webhooks/{id}`: Get a subscription
+- `PATCH /api/v1/webhooks/{id}`: Change a subscription
+- `POST /api/v1/webhooks/{id}/rotate-secret`: Rotate the signing secret
+- `POST /api/v1/webhooks/{id}/test`: Send a test call
+- `GET /api/v1/webhooks/deliveries`: List deliveries
+- `POST /api/v1/webhooks/deliveries/{id}/redeliver`: Redeliver an event
